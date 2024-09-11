@@ -8,7 +8,7 @@ class Vacancy:
     salary_from: float | str  # зарплата от,,,
     salary_to: float | str  # зарплата до ,,,
 
-    # __slots__ = ('title', 'area', 'url', 'salary_from', 'salary_to', 'description')
+    __slots__ = ("name", "area", "url", "salary_from", "salary_to", "description")
 
     def __init__(self, name, area, url, description, salary_from, salary_to) -> None:
         self.name = name
@@ -27,14 +27,14 @@ class Vacancy:
     def __str__(self) -> str:
         return f"{self.name}, {self.area}, Зарплата от {self.salary_from} до {self.salary_to}, Ссылка {self.url}"
 
-    def __lt__(self, other: "Vacancy") -> str:
-        if int(self.salary_to) < int(other.salary_to):
-            return f"выгодное предложение с зарплатой {other.salary_to}"
-        else:
-            return f"выгодное предложение с зарплатой {self.salary_to}"
+    # def __lt__(self, other: "Vacancy") -> str:
+    #     if int(self.salary_to) < int(other.salary_to):
+    #         return f"выгодное предложение с зарплатой {other.salary_to}"
+    #     else:
+    #         return f"выгодное предложение с зарплатой {self.salary_to}"
 
-    # def __lt__(self, other: "Vacancy") -> bool:
-    #     return int(self.salary_to) < int(other.salary_to)
+    def __lt__(self, other: "Vacancy") -> bool:
+        return int(self.salary_to) < int(other.salary_to)
 
     def validate(self) -> None:
         if not self.name or not self.url:

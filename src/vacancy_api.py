@@ -30,7 +30,7 @@ class HHVacancyAPI(AbstractVacancyAPI, ABC):
 
         area_id = self.__fetch_area_id(area)
         params = {
-            "text": f"NAME:{search_query}",
+            "text": search_query,
             "area": area_id,
             "page": page,
             "per_page": per_page,
