@@ -6,7 +6,9 @@ class Vacancy:
     url: str  # ссылка на ваканьсию
     description: str  # описание
     salary_from: float | str  # зарплата от,,,
-    salary_to: float | str # зарплата до ,,,
+    salary_to: float | str  # зарплата до ,,,
+
+    # __slots__ = ('title', 'area', 'url', 'salary_from', 'salary_to', 'description')
 
     def __init__(self, name, area, url, description, salary_from, salary_to) -> None:
         self.name = name
