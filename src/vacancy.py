@@ -1,40 +1,39 @@
-from abc import ABC, abstractmethod
-
-
-class BaseProduct(ABC):
-
-    @abstractmethod
-    def __init__(self):
-        pass
-
-
-class Vacancy(BaseProduct):
-    """ваканьсий"""
+class Vacancy:
+    """класс для описания вваканьсий"""
 
     name: str  # Название вокакнсии
-    base_url: str  # ссылка
+    area: str  # населенный пункт (город, регион, и т.д.)
+    url: str  # ссылка на ваканьсию
     description: str  # описание
-    price: str  # цена
+    salary_from: float | str  # зарплата от,,,
+    salary_to: float | str # зарплата до ,,,
 
-    def __init__(self, name, base_url, description, price):
+    def __init__(self, name, area, url, description, salary_from, salary_to) -> None:
         self.name = name
-        self.__base_url = base_url
+        self.area = area
+        self.url = url
         self.description = description
-        try:
-            self.price = price
-            raise TypeError
-        except TypeError as e:
-            print(e)
-            print("Зарплата не указана")
+        self.salary_from: str = salary_from if salary_from else "0"
+        self.salary_to: str = salary_to if salary_to else "0"
+        # try:
+        #     self.price = price
+        #     raise TypeError
+        # except TypeError as e:
+        #     print(e)
+        #     print("Зарплата не указана")
 
-    @classmethod
-    def new_vacancy(cls, new_vacancy: dict):
-        name = new_vacancy["name"]
-        __base_url = new_vacancy["base_url"]
-        description = new_vacancy["description"]
-        price = new_vacancy["price"]
-        return cls(name, __base_url, price, description)
+    def __str__(self) -> str:
+        return f"{self.name}, {self.area}, Зарплата от {self.salary_from} до {self.salary_to}, Ссылка {self.url}"
 
+    def __lt__(self, other: "Vacancy") -> str:
+        if int(self.salary_to) < int(other.salary_to):
+            return f"выгодное предложение с зарплатой {other.salary_to}"
+        else:
+            return f"выгодное предложение с зарплатой {self.salary_to}"
 
-    self.__base_url = "https://api.hh.ru/vacancies"
+    # def __lt__(self, other: "Vacancy") -> bool:
+    #     return int(self.salary_to) < int(other.salary_to)
 
+    def validate(self) -> None:
+        if not self.name or not self.url:
+            raise ValueError("Название и ссылка на вакансию обязательны.")
