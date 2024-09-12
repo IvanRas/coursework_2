@@ -25,7 +25,7 @@ class Vacancy:
         #     print("Зарплата не указана")
 
     def __str__(self) -> str:
-        return f"{self.name}, {self.area}, Зарплата от {self.salary_from} до {self.salary_to}, Ссылка {self.url}"
+        return f"{self.name}, {self.area}, Зарплата от {self.salary_from} до {self.salary_to}, Ссылка: {self.url}"
 
     # def __lt__(self, other: "Vacancy") -> str:
     #     if int(self.salary_to) < int(other.salary_to):
