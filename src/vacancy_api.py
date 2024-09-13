@@ -12,7 +12,7 @@ class AbstractVacancyAPI(ABC):
         pass
 
 
-class HHVacancyAPI(AbstractVacancyAPI, ABC):
+class HHVacancyAPI(AbstractVacancyAPI):
     """Класс для работы с API hh.ru"""
 
     def __init__(self):
@@ -20,22 +20,15 @@ class HHVacancyAPI(AbstractVacancyAPI, ABC):
         self.__base_url = "https://api.hh.ru/vacancies"
         self.__area_url = "https://api.hh.ru/areas"
 
-    def fetch_vacancies(self, search_query: str, area: str = "", page: int = 0, per_page: int = 20, string: str = 0):
-        """Метод получения вакансий на сайте hh.ru"""
-        # :arg search_query - поисковый запрос,
-        # :arg area - название населенного пункта,
-        # :arg age - номер страницы,
-        # :arg per_page - количество элементов на странице
-        # :arg string - опыт работы
+    def fetch_vacancies(self, search_query: str, area: str = "", page: int = 0, per_page: int = 20):
+        """Метод получения вакансий на сайте hh.ru
+        :arg search_query - поисковый запрос,
+        :arg area - название населенного пункта,
+        :arg page - номер страницы,
+        :arg per_page - количество элементов на странице"""
 
         area_id = self.__fetch_area_id(area)
-        params = {
-            "text": search_query,
-            "area": area_id,
-            "page": page,
-            "per_page": per_page,
-            "string": string,
-        }
+        params = {"text": f"NAME:{search_query}", "area": area_id, "page": page, "per_page": per_page}
 
         response = requests.get(self.__base_url, params=params)
         if response.status_code == 200:
@@ -50,7 +43,7 @@ class HHVacancyAPI(AbstractVacancyAPI, ABC):
         if response.status_code == 200:
             data_list = response.json()
 
-            if not isinstance(data_list.list):
+            if not isinstance(data_list, list):
                 print("Ошибка: ожидает список, но получен:", type(data_list))
                 return None
 
