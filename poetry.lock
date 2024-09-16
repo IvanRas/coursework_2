@@ -264,6 +264,17 @@ files = [
 toml = ["tomli"]
 
 [[package]]
+name = "decorator"
+version = "5.1.1"
+description = "Decorators for Humans"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "decorator-5.1.1-py3-none-any.whl", hash = "sha256:b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186"},
+    {file = "decorator-5.1.1.tar.gz", hash = "sha256:637996211036b6385ef91435e4fae22989472f9d571faba8927ba8253acbc330"},
+]
+
+[[package]]
 name = "flake8"
 version = "7.1.1"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -688,6 +699,19 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "self"
+version = "2020.12.3"
+description = "@self decorator makes method return self (jQuery-like chaining)"
+optional = false
+python-versions = "*"
+files = [
+    {file = "self-2020.12.3.tar.gz", hash = "sha256:a0c408138257e0ba6188f2a7ad80cb3f61c3e48c3f85d1f973a160f6f887dc53"},
+]
+
+[package.dependencies]
+decorator = "*"
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -740,4 +764,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "b5d1dfcb24eb63bd0d60f45ebd92b59614c96771c398567ffd01438c2f28eae4"
+content-hash = "a01a8ce0a4bc7a1994783ccbc84394dd76c510f3d442af93cbe30cd7d77c3ac4"
